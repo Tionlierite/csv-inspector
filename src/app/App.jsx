@@ -4,11 +4,7 @@ import React from "react"
 import Pages from "../pages/index.jsx"
 
 function App() {
-	return (
-		<div className='app'>
-			<Pages />
-		</div>
-	)
+	return <Pages />
 }
 
 export default App
