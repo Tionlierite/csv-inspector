@@ -17,31 +17,31 @@ export const TableOfContents = () => {
 				<tr className='border-b-2 text-left'>
 					<th
 						scope='col'
-						className='border-r pb-2 pl-2 pt-4 font-normal last:border-r-0'
+						className='border-r px-4 py-2 font-normal last:border-r-0'
 					>
 						Имя
 					</th>
 					<th
 						scope='col'
-						className='border-r pb-2 pl-2 pt-4 font-normal last:border-r-0'
+						className='border-r px-4 py-2 font-normal last:border-r-0'
 					>
 						Номер телефона
 					</th>
 					<th
 						scope='col'
-						className='border-r pb-2 pl-2 pt-4 font-normal last:border-r-0'
+						className='border-r px-4 py-2 font-normal last:border-r-0'
 					>
 						email
 					</th>
 					<th
 						scope='col'
-						className='border-r pb-2 pl-2 pt-4 font-normal last:border-r-0'
+						className='border-r px-4 py-2 font-normal last:border-r-0'
 					>
 						Дата Рождения
 					</th>
 					<th
 						scope='col'
-						className='border-r pb-2 pl-2 pt-4 font-normal last:border-r-0'
+						className='border-r px-4 py-2 font-normal last:border-r-0'
 					>
 						Адрес
 					</th>

@@ -7,3 +7,6 @@
 	font-family: "Noto Sans", "Segoe UI", sans-serif;
 	background-color: #cbcbcb;
 }
+.table-row-item:hover {
+	background-color: rgba(99, 70, 180, 0.25);
+}
