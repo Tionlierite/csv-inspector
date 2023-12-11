@@ -9,6 +9,7 @@ import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 // Actions
 import { addTableOfContents } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
 import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
+import { setErrorMessage } from "../../app/providers/store/reducers/notificationReducer.js"
 
 export const ChooseFileButton = () => {
 	const dispatch = useDispatch()
@@ -21,7 +22,16 @@ export const ChooseFileButton = () => {
 	async function handleChange(event) {
 		const fileData = event.target.files[0]
 
-		if (!fileData || !fileData.name.endsWith(".csv")) return console.log("Nah") // TODO: Notification
+		if (!fileData || !fileData.name.endsWith(".csv")) {
+			dispatch(
+				setErrorMessage(
+					"Неправильный формат файла, разрешены только файлы .CSV"
+				)
+			)
+			console.log("Wrong format")
+			event.target.value = ""
+			return
+		}
 
 		await csvParser(fileData)
 
