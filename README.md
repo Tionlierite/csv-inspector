@@ -1,8 +1,17 @@
-# React + Vite
+# CSV INSPECTOR
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Программа позволяет выбрать файл .csv формата и прочитать из него данные. Пример файла представлен в [public/CSV-файл.csv](https://github.com/Tionlierite/csv-inspector/blob/main/public/CSV-%D1%84%D0%B0%D0%B9%D0%BB.csv).
+Т.к тестовое задание с вышеуказанным файлом было прислано с кодировкой Windows-1251, то [парсер](https://github.com/Tionlierite/csv-inspector/blob/main/src/features/ChooseFileButton/csvParser.js) в программе работает только на данной кодировке. В будущем будет реализовано несколько видов кодировок.
+## Использованные библиотеки
+* React.js, React Router v6
+* Redux, Redux Tool-Kit, LocalStorage
+* PapaParse, Lodash
+* Tailwind
+## Установка и запуск
+После клонирования репозитория, необходимо установить все пакеты из зависимостей:
 
-Currently, two official plugins are available:
+`npm i`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Запустить режим разработки посредством команды
+
+`vite dev`
