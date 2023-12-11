@@ -3,30 +3,40 @@ import React, { useEffect } from "react"
 // Utils
 import csvParser from "./csvParser.js"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 // Shared
 import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 // Actions
 import { addTableOfContents } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
+import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
 
 export const ChooseFileButton = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const handleClick = () => {
 		document.querySelector(".input-file-field").click()
 	}
 
-	const handleChange = event => {
+	async function handleChange(event) {
 		const fileData = event.target.files[0]
 
 		if (!fileData || !fileData.name.endsWith(".csv")) return console.log("Nah") // TODO: Notification
 
-		csvParser(fileData)
+		await csvParser(fileData)
 
 		handleStorageUpdate(JSON.parse(localStorage.getItem("contents")))
+		handleStorageStateUpdate()
+
+		navigate("inspector")
 	}
 
 	const handleStorageUpdate = content => {
 		dispatch(addTableOfContents(content))
+	}
+
+	const handleStorageStateUpdate = () => {
+		dispatch(changeValueToOpposite())
 	}
 
 	return (

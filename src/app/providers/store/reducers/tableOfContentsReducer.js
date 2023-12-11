@@ -1,7 +1,10 @@
+// Libraries
 import { createSlice } from "@reduxjs/toolkit"
+// Utils
+import { localStorageCheck } from "./localStorageCheck.js"
 
 const initialState = {
-	tableOfContents: [] // Local Storage
+	tableOfContents: localStorageCheck()
 }
 
 const tableOfContentsSlice = createSlice({
@@ -10,9 +13,12 @@ const tableOfContentsSlice = createSlice({
 	reducers: {
 		addTableOfContents: (state, action) => {
 			state.tableOfContents = action.payload
+		},
+		resetValues: state => {
+			state.tableOfContents = []
 		}
 	}
 })
 
-export const { addTableOfContents } = tableOfContentsSlice.actions
+export const { addTableOfContents, resetValues } = tableOfContentsSlice.actions
 export default tableOfContentsSlice.reducer
