@@ -1,30 +1,34 @@
 // Libraries
-import React from "react"
-import Papa from "papaparse"
+import React, { useEffect } from "react"
+// Utils
+import csvParser from "./csvParser.js"
+import { useDispatch } from "react-redux"
 // Shared
 import { PrimaryButton } from "../../shared/ui/PrimaryButton"
+// Actions
+import { addTableOfContents } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
 
 export const ChooseFileButton = () => {
+	const dispatch = useDispatch()
+
 	const handleClick = () => {
 		document.querySelector(".input-file-field").click()
 	}
+
 	const handleChange = event => {
 		const fileData = event.target.files[0]
 
 		if (!fileData || !fileData.name.endsWith(".csv")) return console.log("Nah") // TODO: Notification
 
-		Papa.parse(fileData, {
-			complete: result => {
-				console.log(result.data)
-			},
-			header: true,
-			skipEmptyLines: true,
-			encoding: "Windows-1251", // Given .csv file was in Windows-1251 Encoding instead of UTF-8
-			error: (error) => {
-				// TODO: Handle error with notification
-			}
-		}) // TODO: Try to handle situation with completed parsing but with incorrect characters with different encoding
+		csvParser(fileData)
+
+		handleStorageUpdate(JSON.parse(localStorage.getItem("contents")))
 	}
+
+	const handleStorageUpdate = content => {
+		dispatch(addTableOfContents(content))
+	}
+
 	return (
 		<PrimaryButton
 			id='input-file-button'
