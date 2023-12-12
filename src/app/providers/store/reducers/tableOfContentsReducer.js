@@ -1,7 +1,6 @@
-// Libraries
-import { createSlice } from "@reduxjs/toolkit"
 // Utils
-import { localStorageCheck } from "./localStorageCheck.js"
+import { localStorageCheck } from "./localStorageCheck"
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
 	tableOfContents: localStorageCheck()

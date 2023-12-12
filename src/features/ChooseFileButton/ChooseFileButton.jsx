@@ -1,7 +1,7 @@
 // Libraries
 import React from "react"
 // Utils
-import csvParser from "./csvParser.js"
+import csvParser from "./csvParser"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 // Shared
@@ -10,12 +10,12 @@ import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 import {
 	addTableOfContents,
 	resetValues
-} from "../../app/providers/store/reducers/tableOfContentsReducer.js"
-import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
+} from "../../app/providers/store/reducers/tableOfContentsReducer"
+import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer"
 import {
 	setErrorMessage,
 	showNotification
-} from "../../app/providers/store/reducers/notificationReducer.js"
+} from "../../app/providers/store/reducers/notificationReducer"
 
 export const ChooseFileButton = () => {
 	const dispatch = useDispatch()
@@ -49,7 +49,6 @@ export const ChooseFileButton = () => {
 
 		try {
 			const result = await csvParser(fileData)
-			console.log(result)
 			const serializedData = JSON.stringify(result)
 
 			localStorage.setItem("contents", serializedData)

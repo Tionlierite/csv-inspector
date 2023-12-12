@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {
 	setErrorMessage,
 	hideNotification
-} from "../../app/providers/store/reducers/notificationReducer.js"
+} from "../../app/providers/store/reducers/notificationReducer"
 
 export const NotificationWidget = () => {
 	const dispatch = useDispatch()

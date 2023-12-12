@@ -1,11 +1,13 @@
+// Libraries
+import React from "react"
 // Utils
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 // Shared
 import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 // Actions
-import { resetValues } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
-import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
+import { resetValues } from "../../app/providers/store/reducers/tableOfContentsReducer"
+import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer"
 
 export const ReturnToMainPageButton = () => {
 	const dispatch = useDispatch()

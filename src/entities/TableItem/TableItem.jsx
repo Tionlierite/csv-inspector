@@ -1,3 +1,6 @@
+// Libraries
+import React from "react"
+
 export const TableItem = ({ name, phone, email, bday, address }) => {
 	return (
 		<tr className='table-row-item border-b'>

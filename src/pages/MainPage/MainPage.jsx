@@ -4,9 +4,9 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 // Widgets
 import { InputFileWidget } from "../../widgets/InputFileWidget"
-import { NotificationWidget } from "../../widgets/NotificationWidget/index.js"
+import { NotificationWidget } from "../../widgets/NotificationWidget"
 // Actions
-import { showNotification } from "../../app/providers/store/reducers/notificationReducer.js"
+import { showNotification } from "../../app/providers/store/reducers/notificationReducer"
 
 const MainPage = () => {
 	const dispatch = useDispatch()
@@ -16,7 +16,6 @@ const MainPage = () => {
 	)
 
 	useEffect(() => {
-		console.log("Notification message:" + notificationMessage)
 		if (notificationMessage === "Файл еще не загружен" && !notificationStatus) {
 			dispatch(showNotification())
 		}
