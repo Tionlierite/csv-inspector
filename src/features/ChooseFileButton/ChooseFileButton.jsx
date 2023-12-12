@@ -1,8 +1,8 @@
 // Libraries
-import React, { useEffect } from "react"
+import React from "react"
 // Utils
 import csvParser from "./csvParser.js"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 // Shared
 import { PrimaryButton } from "../../shared/ui/PrimaryButton"
@@ -14,6 +14,9 @@ import { setErrorMessage } from "../../app/providers/store/reducers/notification
 export const ChooseFileButton = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const localstorageState = useSelector(
+		state => state.stateOfLocalstorage.stateOfLocalstorage
+	)
 
 	const handleClick = () => {
 		document.querySelector(".input-file-field").click()
@@ -28,7 +31,6 @@ export const ChooseFileButton = () => {
 					"Неправильный формат файла, разрешены только файлы .CSV"
 				)
 			)
-			console.log("Wrong format")
 			event.target.value = ""
 			return
 		}
@@ -36,8 +38,7 @@ export const ChooseFileButton = () => {
 		await csvParser(fileData)
 
 		handleStorageUpdate(JSON.parse(localStorage.getItem("contents")))
-		handleStorageStateUpdate()
-
+		if (!localstorageState) handleStorageStateUpdate()
 		navigate("inspector")
 	}
 
