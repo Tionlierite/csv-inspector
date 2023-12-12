@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom"
 // Shared
 import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 // Actions
-import { addTableOfContents } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
+import {
+	addTableOfContents,
+	resetValues
+} from "../../app/providers/store/reducers/tableOfContentsReducer.js"
 import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
 import { setErrorMessage } from "../../app/providers/store/reducers/notificationReducer.js"
 
@@ -19,6 +22,11 @@ export const ChooseFileButton = () => {
 	)
 
 	const handleClick = () => {
+		if (localstorageState) {
+			localStorage.clear()
+			dispatch(changeValueToOpposite())
+			dispatch(resetValues())
+		}
 		document.querySelector(".input-file-field").click()
 	}
 
