@@ -35,7 +35,16 @@ export const ChooseFileButton = () => {
 			return
 		}
 
-		await csvParser(fileData)
+		try {
+			const result = await csvParser(fileData)
+			console.log(result)
+			const serializedData = JSON.stringify(result)
+
+			localStorage.setItem("contents", serializedData)
+		} catch (error) {
+			console.log(error)
+			await csvParser(fileData, "UTF-8")
+		}
 
 		handleStorageUpdate(JSON.parse(localStorage.getItem("contents")))
 		if (!localstorageState) handleStorageStateUpdate()
