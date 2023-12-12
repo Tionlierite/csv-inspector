@@ -16,7 +16,7 @@ const MainPage = () => {
 	)
 
 	useEffect(() => {
-		if (notificationMessage === "Файл еще не загружен" && !notificationStatus) {
+		if (notificationMessage && !notificationStatus) {
 			dispatch(showNotification())
 		}
 	}, [notificationMessage])

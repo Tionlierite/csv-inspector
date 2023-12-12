@@ -8,12 +8,14 @@ import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 // Actions
 import { resetValues } from "../../app/providers/store/reducers/tableOfContentsReducer"
 import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer"
+import { setErrorMessage } from "../../app/providers/store/reducers/notificationReducer"
 
 export const ReturnToMainPageButton = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
 	const handleClick = () => {
+		dispatch(setErrorMessage("Информация о прошлом файле была очищена"))
 		localStorage.clear()
 		dispatch(resetValues())
 		dispatch(changeValueToOpposite())
