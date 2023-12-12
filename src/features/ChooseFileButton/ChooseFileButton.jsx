@@ -12,7 +12,10 @@ import {
 	resetValues
 } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
 import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
-import { setErrorMessage } from "../../app/providers/store/reducers/notificationReducer.js"
+import {
+	setErrorMessage,
+	showNotification
+} from "../../app/providers/store/reducers/notificationReducer.js"
 
 export const ChooseFileButton = () => {
 	const dispatch = useDispatch()
@@ -39,6 +42,7 @@ export const ChooseFileButton = () => {
 					"Неправильный формат файла, разрешены только файлы .CSV"
 				)
 			)
+			dispatch(showNotification())
 			event.target.value = ""
 			return
 		}
