@@ -1,10 +1,9 @@
-// Libraries
-import { createSlice } from "@reduxjs/toolkit"
 // Utils
 import { localStorageCheck } from "./localStorageCheck.js"
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-	stateOfLocalstorage: localStorageCheck().length >= 1 ? true : false
+	stateOfLocalstorage: localStorageCheck().length >= 1
 }
 
 const stateOfLocalstorageSlice = createSlice({

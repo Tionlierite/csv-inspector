@@ -1,11 +1,11 @@
 // Libraries
 import React from "react"
+// Utils
+import { ProtectedRoute } from "./CsvPage/ProtectedRoute"
 import { Route, Routes } from "react-router-dom"
 // Pages
-import MainPage from "./MainPage/MainPage.jsx"
-import CsvPage from "./CsvPage/CsvPage.jsx"
-// Utils
-import { ProtectedRoute } from "./CsvPage/ProtectedRoute.jsx"
+import MainPage from "./MainPage/MainPage"
+import CsvPage from "./CsvPage/CsvPage"
 
 const Pages = () => {
 	return (

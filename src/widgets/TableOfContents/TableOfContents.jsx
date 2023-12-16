@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect } from "react"
+import React from "react"
 import _ from "lodash"
 // Utils
 import { useSelector } from "react-redux"

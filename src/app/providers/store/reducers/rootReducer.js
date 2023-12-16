@@ -1,9 +1,9 @@
-// Libraries
+// Utils
 import { combineReducers } from "@reduxjs/toolkit"
 // Reducers
 import tableOfContentsReducer from "./tableOfContentsReducer"
 import stateOfLocalstorage from "./csvStateReducer"
-import notification from "./notificationReducer.js"
+import notification from "./notificationReducer"
 
 const rootReducer = combineReducers({
 	tableOfContents: tableOfContentsReducer,

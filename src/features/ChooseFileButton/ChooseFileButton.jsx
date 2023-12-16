@@ -1,21 +1,32 @@
 // Libraries
-import React, { useEffect } from "react"
+import React from "react"
 // Utils
-import csvParser from "./csvParser.js"
-import { useDispatch } from "react-redux"
+import csvParser from "./csvParser"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 // Shared
 import { PrimaryButton } from "../../shared/ui/PrimaryButton"
 // Actions
-import { addTableOfContents } from "../../app/providers/store/reducers/tableOfContentsReducer.js"
-import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer.js"
-import { setErrorMessage } from "../../app/providers/store/reducers/notificationReducer.js"
+import {
+	addTableOfContents,
+	resetValues
+} from "../../app/providers/store/reducers/tableOfContentsReducer"
+import { changeValueToOpposite } from "../../app/providers/store/reducers/csvStateReducer"
+import { setErrorMessage } from "../../app/providers/store/reducers/notificationReducer"
 
 export const ChooseFileButton = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const localstorageState = useSelector(
+		state => state.stateOfLocalstorage.stateOfLocalstorage
+	)
 
 	const handleClick = () => {
+		if (localstorageState) {
+			localStorage.clear()
+			dispatch(changeValueToOpposite())
+			dispatch(resetValues())
+		}
 		document.querySelector(".input-file-field").click()
 	}
 
@@ -28,16 +39,22 @@ export const ChooseFileButton = () => {
 					"Неправильный формат файла, разрешены только файлы .CSV"
 				)
 			)
-			console.log("Wrong format")
 			event.target.value = ""
 			return
 		}
 
-		await csvParser(fileData)
+		try {
+			const result = await csvParser(fileData)
+			const serializedData = JSON.stringify(result)
+
+			localStorage.setItem("contents", serializedData)
+		} catch (error) {
+			console.log(error)
+			await csvParser(fileData, "UTF-8")
+		}
 
 		handleStorageUpdate(JSON.parse(localStorage.getItem("contents")))
-		handleStorageStateUpdate()
-
+		if (!localstorageState) handleStorageStateUpdate()
 		navigate("inspector")
 	}
 
