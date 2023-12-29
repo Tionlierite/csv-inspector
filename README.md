@@ -44,3 +44,4 @@ http://localhost:5173/
 ## Известные проблемы
 
 - Т.к предоставленный .csv [файл](https://github.com/Tionlierite/csv-inspector/blob/main/public/CSV-%D1%84%D0%B0%D0%B9%D0%BB.csv) имеет кодировку Windows-1251, то [парсер](https://github.com/Tionlierite/csv-inspector/blob/main/src/features/ChooseFileButton/csvParser.js) в программе работает только на данной кодировке. В будущем будет реализовано несколько видов кодировок.
+- При возвращении на главную страницу не отображается уведомления об уже ипортированных данных вместе с кнопкой для возвращения на страницу с данными.
